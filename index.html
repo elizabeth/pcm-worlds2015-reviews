@@ -8,14 +8,14 @@
         <!-- page icon -->
         <link rel="icon" href="img/PCMicon.jpeg"/>
 
-        <title>PCM Worlds 2015 Review</title>
+        <title>PCM Worlds 2015 Survey</title>
     </head>
 
     <body>
         <main class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h1>PCM Worlds 2015 <span id="average-rate"></span></h1>
+                    <h1>PCM Worlds 2015</span></h1>
                 </div>
             </div>
             <div class="row">
@@ -26,48 +26,113 @@
                 <div class="col-md-3">
                     <img class="img-responsive" src="img/IMG_0099.JPG" alt="stressBall">
                 </div>
-
-                <div id="description" class="col-md-6">
-                    <p>Tell us what you thought of our event! Feel free to be 100% truthful so that we can
-                        utilize your feedback for future events. We want your thoughts, opinions, what you like/didn't
-                        like, and ideas!
-                    </p><br>
-
-                    <i class="fa fa-magic fa-3x"></i>
-                    <i class="fa fa-heart-o fa-3x"></i>
-                </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <h3>Review our event! <i class="fa fa-spinner fa-pulse"></i>
-                    </h3>
+                    <br>
 
-                    <p id="success" class="alert alert-success"></p>
-                    <p id="error-message" class="alert alert-danger"></p>
-
-                    <div class="form-group">
-                        <div id="rating"></div>
-                    </div>
+                    <legend>Please fill out this survey <i class="fa fa-spinner fa-pulse"></i>
+                    </legend>
 
                     <form id="review-form">
-                        <div class="row form-group">
-                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="title"
-                                   placeholder="review title" maxlength="26" required>
-                             </div>
+                        <div class="form-group">
+                            <label>How did you hear about PCM's League Til It's Light Out?</label><br>
+                            <label for="web"><input type="checkbox" id="web" name="heard" value="web"/>
+                                Website/Social Media</label><br>
+
+                            <label for="friend"><input type="checkbox" id="friend" name="heard" value="friend"/>
+                                Friend</label><br>
+
+                            <label for="tabling"><input type="checkbox" id="tabling" name="heard" value="tabling"/>
+                                Tabling</label><br>
+
+                            <label for="other"><input type="checkbox" id="other" name="heard" value="other"/>
+                                <input type="text" placeholder="other" /></label>
                         </div>
 
                         <div class="form-group">
-                            <textarea class="form-control" name="review"
-                                   placeholder="new review" maxlength="500"></textarea>
+                            <label for="instruct">How clear were the instructions & information provided on the website?
+                                <br>(Scale 1-10, 10 being extremely clear)</label><br>
+                            <input id="instruct" type="number" min="1" max="10" step="1" required/>
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                            <label for="chall">Did you purchase a challenger pack?</label><br>
+                            <select id="chall" required>
+                                <option disabled selected>Select an option</option>
+                                <option value="yes">yes</option>
+                                <option value="no">no</option>
+                            </select>
+                        </div>
+
+                        <div id="challengerYes">
+                            <div class="form-group">
+                                <label for="challYes">How satisfied were you with the value of the pack?<br>
+                                    (Scale 1-10, 10 being extremely satisfied)</label><br>
+                                <input id="challYes" type="number" min="1" max="10" step="1"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="challPack">How was the bus ride?<br>
+                                    (Scale 1-10, 10 being extremely fun)</label><br>
+                                <textarea id="challPack" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="venue">How was your experience with the venue?<br>
+                                (Scale 1-10, 10 being extremely fantastic)</label><br>
+                            <input id="venue" type="number" min="1" max="10" step="1" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="venueComment">Any additional comments about the venue?</label><br>
+                            <textarea id="venueComment" class="form-control" placeholder="Additional Comments"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activities">Please rate the activities during the event<br>
+                                (Scale 1-10, 10 being extremely fun)</label><br>
+                            <input id="activities" type="number" min="1" max="10" step="1" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attend">Would you attend the same event again next year?</label><br>
+                            <select id="attend" required>
+                                <option disabled selected>Select an option</option>
+                                <option value="yes">yes</option>
+                                <option value="no">no</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additEvent">Additional Comments About the Overall Event</label>
+                            <textarea id="additEvent" class="form-control" placeholder="Additional comments about the event"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Additional Comments</label><br>
+                            <textarea id="comments" class="form-control" placeholder="Additional Comments"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="future">What events would you like to see in the future?</label>
+                            <textarea id="future" class="form-control" placeholder="Any future events?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rating">Please Rate the Overall Event</label>
+                            <div id="rating"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit Survey</button>
                             <button type="reset" class="btn btn-default">Clear</button>
                         </div>
                     </form>
+                    <p id="success" class="alert alert-success"></p>
+                    <p id="error-message" class="alert alert-danger"></p>
                 </div>
             </div><br>
 

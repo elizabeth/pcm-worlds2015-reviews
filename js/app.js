@@ -10,7 +10,7 @@ $(function() {
         ratingElem.raty();
     });
 
-    var review = Parse.Object.extend("PCMWorlds2015Reviews");
+    var review = Parse.Object.extend("PCMWorlds2015Survey");
     var reviewsQuery = new Parse.Query(review);
     reviewsQuery.descending('createdAt');
 
@@ -94,17 +94,48 @@ $(function() {
             count++;
             averageRating += eachRate;
 
-            $(document.createElement('span'))
-                .text(eachReview.get('title'))
-                .addClass("reviewTitle")
-                .appendTo(li);
-
-            var span = $(document.createElement('span'))
-                .addClass("icons")
+            $(document.createElement('p'))
+                .text("Heard about event from: " + eachReview.get('heardFrom'))
                 .appendTo(li);
 
             $(document.createElement('p'))
-                .text(eachReview.get('review'))
+                .text("Rate clearness of instructions: " + eachReview.get('clearnessWeb'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Purchased challenger package?: " + eachReview.get('challengerPurchased'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Satisfaction of pack: " + eachReview.get('challengerSatisfaction'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Comments about bus: " + eachReview.get('challengerBus'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Venue comments: " + eachReview.get('venueComments'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Rate event activities: " + eachReview.get('rateActivities'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Would attend in the future again: " + eachReview.get('attend'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Event comments: " + eachReview.get('additEvent'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Additional comments: " + eachReview.get('additionalComments'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
+                .text("Future event comments: " + eachReview.get('futureComments'))
                 .appendTo(li);
         });
     }
@@ -120,21 +151,56 @@ $(function() {
     $("#review-form").submit(function(evt) {
         evt.preventDefault();
 
-        var titleInput = $(this).find("[name='title']");
-        var reviewInput = $(this).find("[name='review']");
+        var heardInput = $(this).find("[name='heard']");
+        var instructInput = $(this).find("[name='instruct']");
+        var challInput = $(this).find("[name='chall']");
+        var challYesInput = $(this).find("[name='challYes']");
+        var challPackInput = $(this).find("[name='challPack']");
+        var venueInput = $(this).find("[name='venue']");
+        var activitiesInput = $(this).find("[name='activities']");
+        var attendInput = $(this).find("[name='attend']");
+        var additEventInput = $(this).find("[name='additEvent']");
+        var commentsInput = $(this).find("[name='comments']");
+        var futureInput = $(this).find("[name='future']");
 
-        //get value of review input
-        var input = reviewInput.val();
-        //get value of title input
-        var title = titleInput.val();
+        //get value of how they heard about the event input
+        var heard = heardInput.val();
+        //get value of clearness of website instructions
+        var instruct = instructInput.val();
+        //get value of whether challenger pack was purchased
+        var chall = challInput.val();
+        //get value of satisfaction of pack
+        var challYes = challYesInput.val();
+        //get value of how the bus ride was
+        var challPack = challPackInput.val();
+        //get value of additional comments about venue
+        var venue = venueInput.val();
+        //get value of rate of activities
+        var activities = activitiesInput.val();
+        //get value of whether would attend again next year
+        var attend = attendInput.val();
+        //get value of additional comments of the event
+        var additEvent = additEventInput.val();
+        //get value of additional comments
+        var comments = commentsInput.val();
+        //get value of comments of future events
+        var future = futureInput.val();
+
 
         // create a new review and set the review attributes
         var worldsReview = new review();
-        worldsReview.set('title', title);
-        worldsReview.set('review', input);
+        worldsReview.set('heardFrom', heard);
+        worldsReview.set('clearnessWeb', instruct);
+        worldsReview.set('challengerPurchased', chall);
+        worldsReview.set('challengerSatisfaction', challYes);
+        worldsReview.set('challengerBus', challPack);
+        worldsReview.set('venueComments', venue);
+        worldsReview.set('rateActivities', activities);
+        worldsReview.set('attendAgain', attend);
+        worldsReview.set('eventComments', additEvent);
+        worldsReview.set('additionalComments', comments);
+        worldsReview.set('futureComments', future);
         worldsReview.set('rating', ratingElem.raty('score') || 0);
-        worldsReview.set('voted', 0);
-        worldsReview.set('helpful', 0);
         worldsReview.save().then(getReviews, displayError).then(function () {
             titleInput.val("");
             reviewInput.val("");
