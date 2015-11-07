@@ -35,9 +35,9 @@
                     <legend>Please fill out this survey <i class="fa fa-spinner fa-pulse"></i>
                     </legend>
 
-                    <form id="review-form">
+                    <form id="survey-form">
                         <div class="form-group">
-                            <label>How did you hear about PCM's League Til It's Light Out?</label><br>
+                            <label>How did you hear about PCM's League Til It's Light Out?*</label><br>
                             <label for="web"><input type="checkbox" id="web" name="heard" value="web"/>
                                 Website/Social Media</label><br>
 
@@ -47,18 +47,18 @@
                             <label for="tabling"><input type="checkbox" id="tabling" name="heard" value="tabling"/>
                                 Tabling</label><br>
 
-                            <label for="other"><input type="checkbox" id="other" name="heard" value="other"/>
-                                <input type="text" placeholder="other" /></label>
+                            <label for="other"><input id="otherCheck" type="checkbox" name="heard" value="other"/>
+                                <input id="other" name="heard" type="text" placeholder="other" /></label>
                         </div>
 
                         <div class="form-group">
-                            <label for="instruct">How clear were the instructions & information provided on the website?
+                            <label for="instruct">How clear were the instructions & information provided on the website?*
                                 <br>(Scale 1-10, 10 being extremely clear)</label><br>
-                            <input id="instruct" type="number" min="1" max="10" step="1" required/>
+                            <input id="instruct" type="number" name="instruct" min="1" max="10" step="1" required/>
                         </div>
 
                         <div class="form-group">
-                            <label for="chall">Did you purchase a challenger pack?</label><br>
+                            <label for="chall">Did you purchase a challenger pack?*</label><br>
                             <select id="chall" required>
                                 <option disabled selected>Select an option</option>
                                 <option value="yes">yes</option>
@@ -74,32 +74,31 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="challPack">How was the bus ride?<br>
-                                    (Scale 1-10, 10 being extremely fun)</label><br>
-                                <textarea id="challPack" class="form-control"></textarea>
+                                <label for="challPack">How was the bus ride?</label><br>
+                                <textarea id="challPack" name="challPack" class="form-control"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="venue">How was your experience with the venue?<br>
+                            <label for="venueRate">How was your experience with the venue?*<br>
                                 (Scale 1-10, 10 being extremely fantastic)</label><br>
-                            <input id="venue" type="number" min="1" max="10" step="1" required/>
+                            <input id="venueRate" name="venueRate" type="number" min="1" max="10" step="1" required/>
                         </div>
 
                         <div class="form-group">
                             <label for="venueComment">Any additional comments about the venue?</label><br>
-                            <textarea id="venueComment" class="form-control" placeholder="Additional Comments"></textarea>
+                            <textarea id="venueComment" name="venueComment" class="form-control" placeholder="Additional Comments"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="activities">Please rate the activities during the event<br>
+                            <label for="activities">Please rate the activities during the event*<br>
                                 (Scale 1-10, 10 being extremely fun)</label><br>
-                            <input id="activities" type="number" min="1" max="10" step="1" required/>
+                            <input id="activities" name="activities" type="number" min="1" max="10" step="1" required/>
                         </div>
 
                         <div class="form-group">
-                            <label for="attend">Would you attend the same event again next year?</label><br>
-                            <select id="attend" required>
+                            <label for="attendAgain">Would you attend the same event again next year?*</label><br>
+                            <select id="attendAgain" name="attend" required>
                                 <option disabled selected>Select an option</option>
                                 <option value="yes">yes</option>
                                 <option value="no">no</option>
@@ -107,22 +106,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="additEvent">Additional Comments About the Overall Event</label>
-                            <textarea id="additEvent" class="form-control" placeholder="Additional comments about the event"></textarea>
+                            <label for="eventComments">Additional Comments About the Overall Event</label>
+                            <textarea name="eventComments" id="eventComments" class="form-control"
+                                      placeholder="Additional comments about the event"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="comments">Additional Comments</label><br>
-                            <textarea id="comments" class="form-control" placeholder="Additional Comments"></textarea>
+                            <textarea id="comments" name="comments" class="form-control" placeholder="Additional Comments"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="future">What events would you like to see in the future?</label>
-                            <textarea id="future" class="form-control" placeholder="Any future events?"></textarea>
+                            <textarea id="future" name="future" class="form-control" placeholder="Any future events?"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="rating">Please Rate the Overall Event</label>
+                            <label for="rating">Please Rate the Overall Event*</label>
                             <div id="rating"></div>
                         </div>
 

@@ -21,10 +21,20 @@ $(function() {
     var errorMessage = $("#error-message");
 
     // Reference the reviews list element
-    var reviewsList = $("#reviews-list");
+    var reviewsList = $("#responses-list");
 
     // Reference to rating element
     var ratingElem = $("#rating");
+
+    $('#other').focus(function() {
+        $('#otherCheck').prop('checked', true);
+    });
+
+    $('#otherCheck').bind('click', function() {
+        if ($(this).not(':checked')) {
+            $('#other').val("");
+        }
+    })
 
     // Average rating
     var averageRating = 0;
@@ -95,6 +105,10 @@ $(function() {
             averageRating += eachRate;
 
             $(document.createElement('p'))
+                .text("Time: " + eachReview.get('createdAt'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
                 .text("Heard about event from: " + eachReview.get('heardFrom'))
                 .appendTo(li);
 
@@ -115,6 +129,10 @@ $(function() {
                 .appendTo(li);
 
             $(document.createElement('p'))
+                .text("Venue Rating: " + eachReview.get('venueRate'))
+                .appendTo(li);
+
+            $(document.createElement('p'))
                 .text("Venue comments: " + eachReview.get('venueComments'))
                 .appendTo(li);
 
@@ -123,11 +141,11 @@ $(function() {
                 .appendTo(li);
 
             $(document.createElement('p'))
-                .text("Would attend in the future again: " + eachReview.get('attend'))
+                .text("Would attend in the future again: " + eachReview.get('attendAgain'))
                 .appendTo(li);
 
             $(document.createElement('p'))
-                .text("Event comments: " + eachReview.get('additEvent'))
+                .text("Event comments: " + eachReview.get('eventComments'))
                 .appendTo(li);
 
             $(document.createElement('p'))
@@ -148,43 +166,40 @@ $(function() {
     }
 
     // When the user submits a new review
-    $("#review-form").submit(function(evt) {
+    $("#survey-form").submit(function(evt) {
         evt.preventDefault();
 
-        var heardInput = $(this).find("[name='heard']");
-        var instructInput = $(this).find("[name='instruct']");
-        var challInput = $(this).find("[name='chall']");
-        var challYesInput = $(this).find("[name='challYes']");
-        var challPackInput = $(this).find("[name='challPack']");
-        var venueInput = $(this).find("[name='venue']");
-        var activitiesInput = $(this).find("[name='activities']");
-        var attendInput = $(this).find("[name='attend']");
-        var additEventInput = $(this).find("[name='additEvent']");
-        var commentsInput = $(this).find("[name='comments']");
-        var futureInput = $(this).find("[name='future']");
+        //get values of how they heard about the event input
+        var heard = "";
+        $("input:checked").each(function(){
+            heard += $(this).val() + " ";
+        });
+        //
+        heard += $('#other').val();
 
-        //get value of how they heard about the event input
-        var heard = heardInput.val();
+        console.log(heard);
         //get value of clearness of website instructions
-        var instruct = instructInput.val();
+        var instruct = $('#instruct').val();
         //get value of whether challenger pack was purchased
-        var chall = challInput.val();
+        var chall = $('#chall :selected').text();
         //get value of satisfaction of pack
-        var challYes = challYesInput.val();
+        var challYes = $('#challYes').val();
         //get value of how the bus ride was
-        var challPack = challPackInput.val();
+        var challPack = $('#challPack').val();
+        //get value of rate of venue
+        var venue = $('#venueRate').val();
         //get value of additional comments about venue
-        var venue = venueInput.val();
+        var venueComments = $('#venueComment').val();
         //get value of rate of activities
-        var activities = activitiesInput.val();
+        var activities = $('#activities').val();
         //get value of whether would attend again next year
-        var attend = attendInput.val();
+        var attend = $('#attendAgain :selected').val();
         //get value of additional comments of the event
-        var additEvent = additEventInput.val();
+        var additEvent = $('#eventComments').val();
         //get value of additional comments
-        var comments = commentsInput.val();
+        var comments = $('#comments').val();
         //get value of comments of future events
-        var future = futureInput.val();
+        var future = $('#future').val();
 
 
         // create a new review and set the review attributes
@@ -192,18 +207,18 @@ $(function() {
         worldsReview.set('heardFrom', heard);
         worldsReview.set('clearnessWeb', instruct);
         worldsReview.set('challengerPurchased', chall);
-        worldsReview.set('challengerSatisfaction', challYes);
-        worldsReview.set('challengerBus', challPack);
-        worldsReview.set('venueComments', venue);
+        worldsReview.set('challengerSatisfaction', challYes || "none");
+        worldsReview.set('challengerBus', challPack || "none");
+        worldsReview.set('venueRate', venue);
+        worldsReview.set('venueComments', venueComments || "none");
         worldsReview.set('rateActivities', activities);
         worldsReview.set('attendAgain', attend);
-        worldsReview.set('eventComments', additEvent);
-        worldsReview.set('additionalComments', comments);
-        worldsReview.set('futureComments', future);
+        worldsReview.set('eventComments', additEvent || "none");
+        worldsReview.set('additionalComments', comments || "none");
+        worldsReview.set('futureComments', future || "none");
         worldsReview.set('rating', ratingElem.raty('score') || 0);
         worldsReview.save().then(getReviews, displayError).then(function () {
-            titleInput.val("");
-            reviewInput.val("");
+            $('#survey-form').trigger("reset");
             ratingElem.raty('set', {});
             $("#success").text("Thanks for your feedback!").fadeIn();
         });
