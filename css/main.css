@@ -78,3 +78,7 @@ span {
     margin-left: 2em;
     font-size: 15px;
 }
+
+#responses-list p {
+    padding-left: 0.5em;
+}
