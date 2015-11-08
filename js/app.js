@@ -75,7 +75,7 @@ $(function() {
         reviewsQuery.find()
             .then(onData, displayError)
             .then(function() {
-                averageRating = parseInt(averageRating / count);
+                averageRating = averageRating / count;
             })
             .then(avgRate)
             .always(hideSpinner);
